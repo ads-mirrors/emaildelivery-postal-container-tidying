@@ -9,10 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Delete CI containers
-        uses: snok/container-retention-policy@v1
+        uses: snok/container-retention-policy@v2
         with:
           image-names: postal
           cut-off: Two hours ago UTC
           filter-tags: ci-*
           account-type: org
+          org-name: postalserver
           token: ${{ secrets.PAT }}
