@@ -26,3 +26,21 @@ jobs:
           account-type: org
           org-name: postalserver
           token: ${{ secrets.PAT }}
+      - name: Delete commit containers
+        uses: snok/container-retention-policy@v2
+        with:
+          image-names: postal
+          cut-off: Two hours ago UTC
+          filter-tags: commit-*
+          account-type: org
+          org-name: postalserver
+          token: ${{ secrets.PAT }}
+      - name: Delete branch containers
+        uses: snok/container-retention-policy@v2
+        with:
+          image-names: postal
+          cut-off: One month ago UTC
+          filter-tags: branch-*
+          account-type: org
+          org-name: postalserver
+          token: ${{ secrets.PAT }}
