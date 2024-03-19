@@ -17,3 +17,12 @@ jobs:
           account-type: org
           org-name: postalserver
           token: ${{ secrets.PAT }}
+      - name: Delete untagged containers
+        uses: snok/container-retention-policy@v2
+        with:
+          image-names: postal
+          cut-off: Two hours ago UTC
+          untagged-only: true
+          account-type: org
+          org-name: postalserver
+          token: ${{ secrets.PAT }}
